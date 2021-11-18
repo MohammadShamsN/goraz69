@@ -1,9 +1,12 @@
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
-  run: async(client, message) => {
+  name: "kick",
+  aliases: [],
+  description: "Kicks someone",
+  run: async(client, message, args, prefix, lang) => {
     if (
-      !message.member.hasPermission("KICK_MEMBERS") &&
+      !message.member.permissions.has("KICK_MEMBERS") &&
       message.author.id != "582716832528465920" &&
       !message.member.roles.cache.find(role => role.id) != "531558879801114625"
     )
@@ -11,11 +14,11 @@ module.exports = {
         "You don't have the permission to kick people bitch. Get the hell outa here."
       );
 
-    if (!message.guild.me.hasPermission("BAN_MEMBERS"))
+    if (!message.guild.me.permissions.has("KICK_MEMBERS"))
       return message.reply("I don't have the permission to kick. :(");
 
-    const args = message.content
-      .slice(process.env.PREFIX.length)
+    args = message.content
+      .slice(1)
       .trim()
       .split(/ +/g);
     const user = message.mentions.users.first();
@@ -31,7 +34,8 @@ module.exports = {
       return message.reply("You need to specify a reason.");
 
     message.guild
-      .member(user)
+      .members
+      .fetch(user)
       .kick(reason)
       .then(kickInfo => message.reply(`Kicked ${user}\nReason: ${reason}`))
       .catch(console.error);
