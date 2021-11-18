@@ -15,7 +15,7 @@ module.exports = {
       return;
     }
     
-    var msg = new MessageEmbed()
+    const myembed = new MessageEmbed()
         .setAuthor(
           `Erph Social Media`,
           "https://cdn.glitch.com/88d04f2d-1085-4493-a223-9abd169835de%2F20210718_015659.gif?v=1626562688157"
@@ -41,6 +41,6 @@ module.exports = {
           "https://reymit.com/erph"
         )
     
-    message.channel.send(msg);
+    message.channel.send({embeds: [myembed]});
   }
 };
