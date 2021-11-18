@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { Permissions, MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "kick",
@@ -6,7 +6,7 @@ module.exports = {
   description: "Kicks someone",
   run: async(client, message, args, prefix, lang) => {
     if (
-      !message.member.permissions.has("KICK_MEMBERS") &&
+      !message.member.permissions.has(Permissions.FLAGS.KICK_MEMBERS) &&
       message.author.id != "582716832528465920" &&
       !message.member.roles.cache.find(role => role.id) != "531558879801114625"
     )
@@ -14,7 +14,7 @@ module.exports = {
         "You don't have the permission to kick people bitch. Get the hell outa here."
       );
 
-    if (!message.guild.me.permissions.has("KICK_MEMBERS"))
+    if (!message.guild.me.permissions.has(Permissions.FLAGS.BAN_MEMBERS))
       return message.reply("I don't have the permission to kick. :(");
 
     args = message.content
@@ -35,9 +35,11 @@ module.exports = {
 
     message.guild
       .members
-      .fetch(user)
-      .kick(reason)
-      .then(kickInfo => message.reply(`Kicked ${user}\nReason: ${reason}`))
-      .catch(console.error);
+      .fetch(user.id)
+      .then(member => {
+        member.kick(reason)
+        .then(kickInfo => message.reply(`Kicked ${user}\nReason: ${reason}`))
+        .catch(console.error);
+    })
   }
 };
