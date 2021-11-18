@@ -1,17 +1,17 @@
 {
     "activity": {
-        "name": "<The Bot Activity Name (that waht is the bot will type in his activity)>",
-        "type": "<The Bot Activity Type (that what is the bot activity type  will be ['PLAYING', 'LISTENING', 'WATCHING', 'COMPETING'])>"
+        "name": "with his penis",
+        "type": "PLAYING"
     },
-    "status": "<The Bot Status (that what is the bot status will be ['dnd', 'online', 'idle])>",
+    "status": "dnd",
 
     "domain": "<The Bot Website Domain (the dashboard domain)>",
-    "clientID": "<The Bot Id (that you will find it in the OAuth2)>",
-    "clientSECRET": "<The Bot Secret (that you will find it in the OAuth2)>",
+    "clientID": "839977160264384512",
+    "clientSECRET": "vt0bEeTTREDS15DrJg1aFlO2KLjXt0GB",
 
-    "mainPrefix": "<The Bot Prefix (that what the bot will starts commands)>",
-    "mainLang": "<The Bot Lang, only: ['ar', 'en']>",
-    "ownerID": "<The Onwer Id (this is importing for sent the full updates for the bot)>",
+    "mainPrefix": "$",
+    "mainLang": "en",
+    "ownerID": "446555159510777859",
 
-    "panelType": "<the type of the contorle panel ['buttons', 'reactions', 'none']>"
+    "panelType": "buttons"
 }
