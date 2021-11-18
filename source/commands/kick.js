@@ -14,7 +14,7 @@ module.exports = {
         "You don't have the permission to kick people bitch. Get the hell outa here."
       );
 
-    if (!message.guild.me.permissions.has(Permissions.FLAGS.BAN_MEMBERS))
+    if (!message.guild.me.permissions.has(Permissions.FLAGS.KICK_MEMBERS))
       return message.reply("I don't have the permission to kick. :(");
 
     args = message.content
