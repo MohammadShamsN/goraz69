@@ -111,4 +111,73 @@ module.exports = async(client, reaction, user) => {
     } catch {
         console.log('rexom')
     }
+	
+	var ticket = require('./ready');
+  const ticketChannels = ticket.channels;
+  const channel = ticketChannels.get(reaction.message.channel.id);
+  
+  const reactionEmoji = ticket.reactionEmoji;
+  
+  const ticketMessages = ticket.messages;
+  const message = ticketMessages.get(reaction.message.id);
+  
+  const openTickets = ticket.openTickets;
+  
+  
+  if(user.bot) return;
+  
+  // Create ticket
+  if(message && message.id == reaction.message.id) {
+    if(reactionEmoji == reaction._emoji.name) {
+      channel.guild.channels.create(`ticket-${user.username}`).then(chnl => {
+        chnl.setParent(channel.parent);
+        chnl.send('Ticket ijad shod. PM bezar admina javab midan <:sumK:814618933063319562>').then(msg => {
+          openTickets.set(msg.id, msg);
+          msg.react('✅');
+        });
+      });
+    }
+    reaction.remove().then(reaction => {
+      message.react('🗒️');
+    });
+  }
+  else {  
+    // Close ticket  
+    const ourTicket = await openTickets.get(reaction.message.id);
+    if(ourTicket) {
+      if(reaction._emoji.name === '✅') {
+        reaction.message.channel.delete();
+      }
+    }
+  }
+  
+  
+  
+  
+  if(user.bot) return;
+  
+  // Create ticket
+  if(message && message.id == reaction.message.id) {
+    if(reactionEmoji == reaction._emoji.name) {
+      channel.guild.channels.create(`ticket-${user.username}`).then(chnl => {
+        chnl.setParent(channel.parent);
+        chnl.send('Ticket ijad shod. PM bezar admina javab midan <:sumK:814618933063319562>').then(msg => {
+          openTickets.set(msg.id, msg);
+          msg.react('✅');
+        });
+      });
+    }
+    reaction.remove().then(reaction => {
+      message.react('🗒️');
+    });
+  }
+  else {  
+    // Close ticket  
+    const ourTicket = await openTickets.get(reaction.message.id);
+    if(ourTicket) {
+      if(reaction._emoji.name === '✅') {
+        reaction.message.channel.delete();
+      }
+    }
+  }
 };
